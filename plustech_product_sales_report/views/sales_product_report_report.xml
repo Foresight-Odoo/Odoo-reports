@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- <record id="sale_products_report_filter" model="ir.ui.view">
+        <field name="name">sale.product.list.select</field>
+        <field name="model">sale.products.report</field>
+        <field name="arch" type="xml">
+            <search string="Search Product Sales">
+                <field name="name"/>
+                <field name="pos_reference"/>
+                <field name="date_order"/>
+                <field name="user_id"/>
+                <field name="partner_id"/>
+                <field name="session_id"/>
+                <filter string="Invoiced" name="invoiced" domain="[('state', '=', 'invoiced')]"/>
+                <filter string="Posted" name="posted" domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter string="Order Date" name="order_date" date="date_order"/>
+                <group expand="0" string="Group By">
+                    <filter string="Session" name="session" domain="[]" context="{'group_by': 'session_id'}"/>
+                    <filter string="User" name="user_id" domain="[]" context="{'group_by': 'user_id'}"/>
+                    <filter string="Customer" name="customer" domain="[]" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Status" name="status" domain="[]" context="{'group_by': 'state'}"/>
+                    <filter string="Order Date" name="order_month" domain="[]" context="{'group_by': 'date_order'}"/>
+                </group>
+            </search>
+        </field>
+    </record> -->
+
+    <record id="sale_products_report_tree" model="ir.ui.view">
+        <field name="name">sale.products.report.tree</field>
+        <field name="model">sale.products.report</field>
+        <field name="arch" type="xml">
+            <tree string="Product Sales" create="0" delete="0">
+                <field name="product_id"/>
+                <field name="total_quantity"/>
+                <field name="total_discount_amount"/>
+                <field name="total_tax_amount"/>
+                <field name="total_price_subtotal"/>
+                <field name="total_price_total"/>
+                <field name="list_price" optional="hide"/>
+                <field name="refund_quantity"/>
+                <field name="refund_total_price_total"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_sale_products_report_graph" model="ir.ui.view">
+        <field name="name">sale.products.report.graph</field>
+        <field name="model">sale.products.report</field>
+        <field name="arch" type="xml">
+            <graph string="Product Sales" type="line" sample="1">
+                <field name="product_id"/>
+                <field name="total_quantity" type="measure"/>
+                <field name="refund_quantity" type="measure"/>
+                <field name="refund_total_price_total" type="measure"/>
+                <field name="total_price_total" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+</odoo>

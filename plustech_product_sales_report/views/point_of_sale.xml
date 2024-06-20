@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_pos_order_filter_custom" model="ir.ui.view">
+        <field name="name">pos.order.list.select.custom</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='posted']" position="after">
+                <separator/>
+                <filter string="Storable Product" name="product_type" domain="[('is_product', '=', True)]"/>
+                <filter string="Consumable" name="consumable_type" domain="[('is_consu', '=', True)]"/>
+                <filter string="Service" name="service_type" domain="[('is_service', '=', True)]"/>
+            </xpath>
+            <xpath expr="//filter[@name='order_month']" position="after">
+                <filter string="Point of Sale" name="pos" context="{'group_by':'config_id'}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_pos_session_tree_custom" model="ir.ui.view">
+        <field name="name">pos.session.list.custom</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stop_at']" position="after">
+                <field name="cash_register_balance_start" />
+                <field name="cash_register_balance_end_real" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
